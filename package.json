@@ -1,0 +1,28 @@
+{
+  "name": "pwakanda",
+  "version": "1.0.0",
+  "description": "A progressive [movie] web app from Wakanda! ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeshifu/pwakanda.git"
+  },
+  "keywords": [
+    "pwa",
+    "service-worker",
+    "javascript",
+    "offline",
+    "speed",
+    "vibranium",
+    "wakanda"
+  ],
+  "author": "Olushi Luqman O.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeshifu/pwakanda/issues"
+  },
+  "homepage": "https://github.com/codeshifu/pwakanda#readme"
+}
