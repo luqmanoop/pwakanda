@@ -26,9 +26,13 @@
   },
   "homepage": "https://github.com/codeshifu/pwakanda#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "pug": "^2.0.3",
-    "axios": "^0.18.0"
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.0"
   }
 }
