@@ -1,0 +1,46 @@
+html
+    head    
+        title Movietainment
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, minimum-scale=1')
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+        link(rel="stylesheet" href="/css/detail.css")
+    body
+        div(class="hero")
+            div(class="container content")
+                div(class="col-md-12 content-overlay")
+                    span(class="release_date")
+                    h1(class="movie_title")
+                    div(class="genres")
+
+        div(class="container")
+            div(class="col-md-8")
+                section
+                    article(id="overview")
+                        div(class="info")
+                            div(class="movie_poster_wrapper")
+                                img(class="movie_poster")
+                            div(class="overview")
+                                h4 Overview
+                                p(class="sypnosis")
+
+                    //- MOVIE REVIEWS
+                    article(id="reviews")
+                        h4 Reviews
+                        div(class="")
+                            div(class="reviews_container")
+
+
+                    //- MOVIE TRAILERS
+                    article(id="trailers")
+                        h4 Trailers
+                        div(class="col-md-12")
+                            div(class="row trailers_container")
+                                
+            div(class="col-md-4")
+                aside: article(class='casts'): h4(class='cast-heading') Cast overview
+                    hr
+                    
+
+        script(src="/js/movie.js")
+        
