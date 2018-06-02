@@ -7,6 +7,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'pug');
+app.set('views', './src/views');
 app.use(express.static(path.join(__dirname, '../public/')));
 
 appRoutes(app);
