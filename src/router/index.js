@@ -10,7 +10,7 @@ module.exports = app => {
   });
 
   app.get('/movie/:id/:title?/', (req, res) => {
-    res.json('root with id and title');
+    res.render('detail');
   });
 
   app.use('/api', apiRouter);

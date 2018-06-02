@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { fetchMovies } = require('./controller/apiController');
+const { fetchMovies, fetchMovie } = require('./controller/apiController');
 
 router.get('/movies/:category?/', fetchMovies);
 
-router.get('/movie/:id/:title?/', (req, res) => {
-  res.json({ message: 'hello, world' });
-});
+router.get('/movie/:id', fetchMovie);
 
 module.exports = router;
