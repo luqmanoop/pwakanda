@@ -1,8 +1,11 @@
 const apiRouter = require('./apiRouter');
 
 module.exports = app => {
-  app.get('/:category?/', (req, res) => {
-    const category = req.params.category || '';
+  app.get('/', (req, res) => {
+    res.render('index');
+  });
+
+  app.get('/movies/:category/', (req, res) => {
     res.render('index');
   });
 
