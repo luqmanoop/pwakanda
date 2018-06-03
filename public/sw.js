@@ -53,3 +53,31 @@ function serveFromCache(request) {
   return res;
 }
 
+/**
+ * Fetch from network and update cache
+ * @param request
+ */
+function fetchAndUpdate(cacheName, request) {
+  return caches.open(cacheName).then(function(cache) {
+    return cache.match(request).then(cacheResponse => {
+      if (cacheResponse) {
+        console.log('[ServiceWorker] fetching from cache.');
+        return cacheResponse;
+      }
+
+      return fetch(request)
+        .then(function(response) {
+          if (response.status === 404)
+            return new Response("So sorry that page doesn't exist.");
+
+          console.log('[ServiceWorker] fetching from network.');
+          if (!request.url.startsWith('chrome-extension://')) {
+            cache.put(request.url, response.clone());
+          }
+
+          return response;
+        })
+        .catch(() => new Response('Oh nooooo! Server is down.'));
+    });
+  });
+}
