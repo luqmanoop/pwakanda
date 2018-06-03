@@ -29,3 +29,27 @@ function precache() {
   });
 }
 
+/**
+ * Attempt to fetch request from cache
+ * @param request
+ */
+function serveFromCache(request) {
+  const cloneRequest = request.clone();
+  const res = caches.open(movieStaticCache).then(cache => {
+    return cache.match(request).then(response => {
+      return (
+        response ||
+        fetch(cloneRequest).then(networkResponse => {
+          caches.open(movieDataCache).then(cache => {
+            cache.put(request, networkResponse);
+
+            return networkResponse;
+          });
+        })
+      );
+    });
+  });
+
+  return res;
+}
+
