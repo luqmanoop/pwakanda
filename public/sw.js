@@ -19,6 +19,26 @@ self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(precache());
 });
+
+self.addEventListener('activate', event => {
+  console.log('[serviceWorker] Activated');
+  if (self.clients && clients.claim) {
+    clients.claim();
+  }
+  event.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.map(key => {
+          if (
+            key !== movieStaticCache &&
+            (key !== movieDataCache) & (key !== movieImageCache)
+          )
+            return caches.delete(key);
+        })
+      );
+    })
+  );
+});
 /**
  * precache App Shell
  */
