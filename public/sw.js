@@ -39,6 +39,35 @@ self.addEventListener('activate', event => {
     })
   );
 });
+
+self.addEventListener('fetch', event => {
+  const requestUrl = event.request.url;
+  const clonedRequest = event.request.clone();
+
+  if (requestUrl.startsWith('https://image.tmdb.org/t/p/')) {
+    event.respondWith(fetchAndUpdate(movieImageCache, clonedRequest));
+  } else if (requestUrl.match(/\/api\//)) {
+    if (requestUrl.match(/\/api\/movies\/popular/)) {
+      event.respondWith(
+        caches
+          .match('/api/movies/')
+          .then(
+            response =>
+              response || fetchAndUpdate(movieDataCache, clonedRequest)
+          )
+      );
+      return;
+    }
+    event.respondWith(fetchAndUpdate(movieDataCache, clonedRequest));
+  } else {
+    event.respondWith(
+      caches.match(clonedRequest).then(response => {
+        return response || fetchAndUpdate(movieStaticCache, clonedRequest);
+      })
+    );
+  }
+});
+
 /**
  * precache App Shell
  */
