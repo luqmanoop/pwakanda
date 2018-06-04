@@ -1,6 +1,6 @@
 {
   "name": "PWAkandan Movies",
-  "short_name": "Wakandan Movies",
+  "short_name": "PWakanda",
   "start_url": "/",
   "icons": [
     {
@@ -30,6 +30,7 @@
     }
   ],
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#181818",
   "theme_color": "#333"
 }
