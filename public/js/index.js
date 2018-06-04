@@ -8,7 +8,7 @@ const addMovie = movie => {
         <article class="movie">
             <a href="/movie/${slug}/${id}">
                 <div class="poster_container">
-                    <img class="poster" src="${poster}" alt=''/>
+                    <img class="poster" src="${poster}" alt='${title}'/>
                 </div>
             </a>
                 <h3 class="title truncate" title="${title}">
