@@ -101,7 +101,9 @@ const _cast = document.querySelector('.casts');
       const genreHtml = genres
         .map((value, index) => {
           if (index + 1 === genres.length) return createGenre(value.name);
-          return createGenre(value.name + ' &raquo; ');
+          const glyphicon =
+            "<span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span> ";
+          return createGenre(`${value.name} ${glyphicon}`);
         })
         .join('')
         .trim();
