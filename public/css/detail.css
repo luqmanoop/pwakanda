@@ -142,6 +142,10 @@ hr {
 }
 
 @media screen and (max-width: 600px) {
+  .movie_title {
+    font-size: 1.7em;
+  }
+
   .overview {
     display: block;
     padding-left: 0px;
