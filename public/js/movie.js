@@ -88,7 +88,14 @@ const _cast = document.querySelector('.casts');
         trailers
       } = movie;
 
-      _release_date.textContent = 'Released: ' + release_date;
+      let date = new Date(release_date)
+        .toDateString()
+        .split(' ')
+        .splice(1);
+      date = `${date[0]} ${date[1]}, ${date[2]}`;
+
+      _release_date.textContent = 'Released: ' + date;
+
       _movieTitle.textContent = original_title || title;
 
       const genreHtml = genres
