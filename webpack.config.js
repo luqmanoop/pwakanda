@@ -5,7 +5,7 @@ module.exports = {
     app: './public/js/index.js',
     movie: './public/js/movie.js'
   },
-  mode: process.env.NODE_ENV || 'development',
+  mode: 'production',
   devtool: 'inline-source-map',
   output: {
     filename: '[name].bundle.js',
