@@ -53,7 +53,7 @@ exports.fetchMovie = (req, res) => {
       } = movie;
 
       return {
-        backdrop: movieConfig.backdrop.build(backdrop_path),
+        backdrop: movieConfig.backdrop.build(backdrop_path, 'medium'),
         release_date,
         original_title,
         genres,
