@@ -1,4 +1,5 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -6,7 +7,7 @@ module.exports = {
     movie: './public/js/movie.js'
   },
   mode: 'production',
-  devtool: 'inline-source-map',
+  devtool: 'none',
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './public/js/')
