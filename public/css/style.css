@@ -1,7 +1,9 @@
 body {
-  /* background-color: #222b30; */
-  color: #fff;
+  background-color: #222b31;
+  /* background-color: #fafbff; */
+  font-family: 'Menlo', sans-serif;
 }
+
 nav.navbar {
   border-radius: 0;
 }
@@ -18,13 +20,13 @@ nav.navbar {
 .movies article.movie {
   background-color: #fff;
   color: #333;
-  box-shadow: 1px 2px 10px #ccc;
-  min-height: 130px;
+  min-height: 150px;
   position: relative;
   padding-left: 115px;
+  margin-bottom: 25px;
   padding-right: 15px;
-  margin-bottom: 50px;
-  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-top: 15px;
   cursor: default;
 }
 
@@ -34,6 +36,10 @@ nav.navbar {
   color: #333;
   padding-bottom: 30px;
 }
+.vote-count,
+.release_date {
+  color: #9e9e9e;
+}
 
 .movies .movie .poster_container {
   position: absolute;
@@ -41,7 +47,7 @@ nav.navbar {
   width: 100px;
   height: 150px;
   overflow: hidden;
-  top: -20px;
+  top: 0;
   left: 0;
 }
 
@@ -49,28 +55,58 @@ nav.navbar {
   width: 100%;
 }
 
+.glyphicon {
+  top: 2px;
+}
+
+.vote-count,
+.release_date {
+  color: #9e9e9e;
+}
+.release_date {
+  margin-bottom: 5px;
+}
+.vote-count .glyphicon {
+  color: #e91e63;
+}
+
+.rating {
+  color: #ffcb74;
+}
+
 .movies .movie .title.truncate {
   white-space: nowrap;
-  padding-bottom: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 10px;
+}
+
+.movie .title {
+  margin-top: 0;
+  margin-bottom: 6px;
 }
 
 .movies .movie .overview-excerpt {
   max-height: 66px;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   box-orient: vertical;
   -webkit-box-orient: vertical;
+  margin-top: 5px;
 }
 
 @media screen and (max-width: 600px) {
+  .navbar {
+    margin-bottom: 0;
+  }
   h3 {
     font-size: 14px;
+  }
+
+  .vote-count {
+    visibility: hidden;
   }
 }
 
