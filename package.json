@@ -32,7 +32,8 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "webpack": "^4.10.2",
