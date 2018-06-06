@@ -31,7 +31,6 @@ exports.fetchMovies = (req, res) => {
 
 exports.fetchMovie = (req, res) => {
   const movieId = req.params.id;
-  console.log(movieId);
   client(`/movie/${movieId}`, {
     params: {
       append_to_response: 'videos,credits,reviews'
