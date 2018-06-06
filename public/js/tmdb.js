@@ -1,8 +1,8 @@
-const axios = require('axios');
+require('whatwg-fetch');
 
 const fetchMovies = url => {
-  return axios(url)
-    .then(response => response.data)
+  return fetch(url)
+    .then(response => response.json())
     .then(movies => movies)
     .catch(err => null);
 };
