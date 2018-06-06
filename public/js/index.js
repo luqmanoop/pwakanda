@@ -1,23 +1,41 @@
+import { formatDate, renderMovieRatings } from '../../src/utils';
 const tmdb = require('./tmdb');
 
 const addMovie = movie => {
-  const { id = '', poster = '', overview = '', title = '', slug = '' } =
+  const {
+    id = '',
+    poster = '',
+    overview = '',
+    title = '',
+    slug = '',
+    vote_count = 0,
+    release_date,
+    vote_average
+  } =
     movie || {};
-  return `
-    <div class="col-sm-6 col-md-4">
-        <article class="movie">
-            <a href="/movie/${slug}/${id}">
-                <div class="poster_container">
-                    <img class="poster" src="${poster}" alt='${title}'/>
-                </div>
-            </a>
-                <h3 class="title truncate" title="${title}">
-                    <a href="/movie/${slug}/${id}">${title}</a>
-                </h3>
-                <p class="overview-excerpt">${overview}</p>
-        </article>
-    </div>
-    `;
+  const date = formatDate(release_date);
+  return (
+    `<div class="col-sm-6 col-md-4">` +
+    `<article class="movie">` +
+    `<a href="/movie/${slug}/${id}">` +
+    `<div class="poster_container">` +
+    `<img class="poster" src="${poster}" alt='${title}'/>` +
+    `</div>` +
+    `</a>` +
+    `<h3 class="title truncate" title="${title}">` +
+    `<a href="/movie/${slug}/${id}">${title}</a>` +
+    `</h3>` +
+    `<date class='release_date'>${date}</date>` +
+    `<p class="overview-excerpt">${overview}</p>` +
+    `<div>` +
+    `${renderMovieRatings(vote_average)}` +
+    `<div class="vote-count pull-right">` +
+    `<span class="glyphicon glyphicon-heart"></span> ${vote_count.toLocaleString()}` +
+    `</div>` +
+    `</div>` +
+    `</article>` +
+    `</div>`
+  );
 };
 
 const html = document.querySelector('.row.movies');
