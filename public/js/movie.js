@@ -1,3 +1,5 @@
+import { formatDate } from '../../src/utils';
+
 const createGenre = genre => {
   return `
       <small>${genre}</small>
@@ -88,11 +90,7 @@ const _cast = document.querySelector('.casts');
         trailers
       } = movie;
 
-      let date = new Date(release_date)
-        .toDateString()
-        .split(' ')
-        .splice(1);
-      date = `${date[0]} ${date[1]}, ${date[2]}`;
+      const date = formatDate(release_date);
 
       _release_date.textContent = 'Released: ' + date;
 
