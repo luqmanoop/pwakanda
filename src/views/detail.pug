@@ -3,16 +3,18 @@ html
         title Progressive Movies App From Wakanda
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, minimum-scale=1')
-        link(href="/manifest.json", rel="manifest")
-        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
         meta(name="apple-mobile-web-app-capable" content="yes")
         meta(name="apple-mobile-web-app-status-bar-style" content="black")
         meta(name="apple-mobile-web-app-title" content="PWAkanda Movies")
-        link(rel="apple-touch-icon" href="/images/icons/icon-152x152.png")
         meta(name="msapplication-TileImage" content="images/icons/icon-144x144.png")
         meta(name="msapplication-TileColor" content="#333")
-        style(type="text/css").
-            .media-body,.overview{vertical-align:middle}body,html{height:100%;line-height:1.6em;background:#f3f3f3}h1,h2,h3,h4,h5,h6{font-family:Roboto,sans-serif}.hero{height:50%;background-color:#ccc;background-repeat:no-repeat;background-position:center;background-size:cover;color:#fff;position:relative}.hero:before{content:' ';position:absolute;width:100%;height:100%;background:#333;opacity:.45}section{position:relative;z-index:3;top:-30px;overflow:auto}aside,section{box-shadow:1px 3px 4px #b5b0b0;background:#fff;padding:15px}.hero .content{position:relative;height:100%}.hero .content-overlay{position:absolute;left:15px;bottom:40px}.content-overlay h1{margin-top:5px}article{overflow:auto;padding-top:15px;padding-bottom:15px}.media:not(:last-child),.review:not(:last-child),article:not(:last-child){border-bottom:1px solid #ddd}#overview{padding-top:0;padding-bottom:0}#overview .info{display:table}#overview .movie_poster_wrapper{min-width:90px;min-height:120px;background:#ddd;float:left;margin-right:15px;margin-bottom:15px}.overview{display:table-cell}.overview h4{margin-top:0}aside{margin-top:20px;padding-top:0}hr{margin-top:10px}.cast-heading,.media{margin-top:0}.media .media-left>div{height:64px;width:64px;border-radius:50%;overflow:hidden}.media{display:table;padding:10px 0}.media-body{display:table-cell}.media-object{width:100%;height:auto}.trailer{margin-bottom:15px;padding-left:0}@media screen and (max-width:600px){.movie_title{font-size:1.7em}.overview{display:block;padding-left:0}.hero+.container{padding:0}}
+        link(href="/manifest.json", rel="manifest")
+        link(rel="apple-touch-icon" href="/images/icons/icon-152x152.png")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+        link(href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet")
+        style.
+            .media-body,.overview{vertical-align:middle}body,html{height:100%;line-height:1.6em;background:#f3f3f3}h1,h2,h3,h4,h5,h6{font-family:Roboto,sans-serif}.hero{height:50%;background-color:#ccc;background-repeat:no-repeat;background-position:center;background-size:cover;color:#fff;position:relative}.hero:before{content:' ';position:absolute;width:100%;height:100%;background:#333;opacity:.45}section{position:relative;z-index:3;top:-30px;overflow:auto}aside,section{box-shadow:1px 3px 4px #b5b0b0;background:#fff;padding:15px}.hero .content{position:relative;height:100%}.hero .content-overlay{position:absolute;left:15px;bottom:40px}.content-overlay h1{margin-top:5px}article{overflow:auto;padding-top:15px;padding-bottom:15px}.media:not(:last-child),.review:not(:last-child),article:not(:last-child){border-bottom:1px solid #ddd}#overview{padding-top:0;padding-bottom:0}#overview .info{display:table}#overview .movie_poster_wrapper{min-width:90px;min-height:120px;background:#ddd;float:left;margin-right:15px;margin-bottom:15px}.overview{display:table-cell}.overview h4{margin-top:0}aside{margin-top:20px;margin-bottom:20px;padding-top:0}hr{margin-top:10px}.cast-heading,.media{margin-top:0}.media .media-left>div{height:64px;width:64px;border-radius:50%;overflow:hidden}.media{display:table;padding:10px 0}.media-body{display:table-cell}.media-object{width:100%;height:auto}.trailer{margin-bottom:15px;padding-left:0}@media screen and (max-width:600px){.movie_title{font-size:1.7em}.overview{display:block;padding-left:0}.hero+.container{padding:0}}
+        
     body
         div(class="hero")
             div(class="container content")

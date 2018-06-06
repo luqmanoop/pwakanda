@@ -1,6 +1,6 @@
 body {
   background-color: #222b31;
-  font-family: 'Menlo', sans-serif;
+  font-family: 'Roboto Mono', monospace, sans-serif;
 }
 
 nav.navbar {
@@ -17,7 +17,7 @@ nav.navbar {
 }
 
 .movies article.movie {
-  background-color: #fff;
+  background-color: #2c343b;
   color: #333;
   min-height: 150px;
   position: relative;
@@ -84,8 +84,13 @@ nav.navbar {
   margin-bottom: 6px;
 }
 
+.movie .title > a {
+  color: #fffaf0;
+}
+
 .movies .movie .overview-excerpt {
   max-height: 66px;
+  color: #fffacd;
   line-clamp: 2;
   -webkit-line-clamp: 2;
   overflow: hidden;
@@ -104,6 +109,9 @@ nav.navbar {
     font-size: 14px;
   }
 
+  .movies article.movie {
+    margin-bottom: 2px;
+  }
   .vote-count {
     visibility: hidden;
   }
