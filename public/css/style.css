@@ -1,6 +1,5 @@
 body {
   background-color: #222b31;
-  /* background-color: #fafbff; */
   font-family: 'Menlo', sans-serif;
 }
 
@@ -119,7 +118,7 @@ nav.navbar {
 }
 .loader #spinner {
   box-sizing: border-box;
-  stroke: #673ab7;
+  stroke: #fff;
   stroke-width: 3px;
   -webkit-transform-origin: 50%;
   transform-origin: 50%;

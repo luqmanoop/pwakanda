@@ -1,10 +1,13 @@
+.media-body,
+.overview {
+  vertical-align: middle;
+}
 body,
 html {
   height: 100%;
   line-height: 1.6em;
   background: #f3f3f3;
 }
-
 h1,
 h2,
 h3,
@@ -22,7 +25,6 @@ h6 {
   color: #fff;
   position: relative;
 }
-
 .hero:before {
   content: ' ';
   position: absolute;
@@ -31,56 +33,44 @@ h6 {
   background: #333;
   opacity: 0.45;
 }
-
 section {
   position: relative;
   z-index: 3;
   top: -30px;
+  overflow: auto;
 }
-
-section,
-aside {
+aside,
+section {
   box-shadow: 1px 3px 4px #b5b0b0;
   background: #fff;
   padding: 15px;
 }
-
 .hero .content {
   position: relative;
   height: 100%;
 }
-
 .hero .content-overlay {
   position: absolute;
   left: 15px;
   bottom: 40px;
 }
-
 .content-overlay h1 {
   margin-top: 5px;
 }
-
-section {
-  overflow: auto;
-}
-
 article {
   overflow: auto;
   padding-top: 15px;
   padding-bottom: 15px;
 }
-
-article:not(:last-child),
+.media:not(:last-child),
 .review:not(:last-child),
-.media:not(:last-child) {
+article:not(:last-child) {
   border-bottom: 1px solid #ddd;
 }
-
 #overview {
   padding-top: 0;
   padding-bottom: 0;
 }
-
 #overview .info {
   display: table;
 }
@@ -92,22 +82,23 @@ article:not(:last-child),
   margin-right: 15px;
   margin-bottom: 15px;
 }
-
 .overview {
   display: table-cell;
-  vertical-align: middle;
 }
-
 .overview h4 {
   margin-top: 0;
 }
-
 aside {
   margin-top: 20px;
+  margin-bottom: 20px;
   padding-top: 0;
 }
 hr {
   margin-top: 10px;
+}
+.cast-heading,
+.media {
+  margin-top: 0;
 }
 .media .media-left > div {
   height: 64px;
@@ -115,42 +106,29 @@ hr {
   border-radius: 50%;
   overflow: hidden;
 }
-
-.cast-heading {
-  margin-top: 0;
-}
-
 .media {
   display: table;
   padding: 10px 0;
-  margin-top: 0;
 }
-
 .media-body {
   display: table-cell;
-  vertical-align: middle;
 }
-
 .media-object {
   width: 100%;
   height: auto;
 }
-
 .trailer {
   margin-bottom: 15px;
   padding-left: 0;
 }
-
 @media screen and (max-width: 600px) {
   .movie_title {
     font-size: 1.7em;
   }
-
   .overview {
     display: block;
-    padding-left: 0px;
+    padding-left: 0;
   }
-
   .hero + .container {
     padding: 0;
   }
