@@ -19,7 +19,7 @@ const image = {
 };
 
 const configPoster = function(size = 'xxlow') {
-  let poster_size = size;
+  let poster_size = process.env.NODE_ENV === 'production' ? 'low' : size;
   const base_url = image.config.base_url;
   const { high, medium, low, xlow, xxlow, original } = image.config.poster_size;
 
@@ -48,7 +48,7 @@ const configPoster = function(size = 'xxlow') {
 };
 
 const configBackdrop = function(size = 'low') {
-  let backdrop_size = size;
+  let backdrop_size = process.env.NODE_ENV === 'production' ? 'medium' : size;
   const base_url = image.config.base_url;
   const { high, medium, low, original } = image.config.backdrop_size;
 
