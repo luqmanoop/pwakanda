@@ -39,13 +39,16 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  const requestUrl = event.request.url;
+  const requestUrl = new URL(event.request.url);
   const clonedRequest = event.request.clone();
 
-  if (requestUrl.startsWith('https://image.tmdb.org/t/p/')) {
+  if (requestUrl.hostname === 'image.tmdb.org') {
     event.respondWith(fetchAndUpdate(movieImageCache, clonedRequest));
-  } else if (requestUrl.match(/\/api\//)) {
-    if (requestUrl.match(/\/api\/movies\/popular/)) {
+  } else if (
+    requestUrl.origin === location.origin ||
+    requestUrl.href.match(/\/api\//)
+  ) {
+    if (requestUrl.href.match(/\/api\/movies\/popular/)) {
       event.respondWith(
         caches
           .match('/api/movies/')
