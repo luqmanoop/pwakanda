@@ -45,7 +45,7 @@ self.addEventListener('fetch', event => {
   if (requestUrl.hostname === 'image.tmdb.org') {
     event.respondWith(fetchAndUpdate(movieImageCache, clonedRequest));
   } else if (
-    requestUrl.origin === location.origin ||
+    requestUrl.origin === location.origin &&
     requestUrl.href.match(/\/api\//)
   ) {
     if (requestUrl.href.match(/\/api\/movies\/popular/)) {
@@ -61,6 +61,17 @@ self.addEventListener('fetch', event => {
     }
     event.respondWith(fetchAndUpdate(movieDataCache, clonedRequest));
   } else {
+    if (requestUrl.pathname.startsWith('/movies')) {
+      event.respondWith(
+        caches
+          .match('/')
+          .then(
+            response =>
+              response || fetchAndUpdate(movieStaticCache, clonedRequest)
+          )
+      );
+      return;
+    }
     event.respondWith(
       caches.match(clonedRequest).then(response => {
         return response || fetchAndUpdate(movieStaticCache, clonedRequest);
