@@ -1,4 +1,5 @@
 import { formatDate } from '../../src/utils';
+import '../css/detail.css';
 
 const createGenre = genre => {
   return `

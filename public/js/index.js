@@ -1,5 +1,7 @@
 import { formatDate, renderMovieRatings } from '../../src/utils';
+import '../css/style.css';
 const tmdb = require('./tmdb');
+require('./bootstrap-navbar-toggle');
 
 const addMovie = movie => {
   const {
