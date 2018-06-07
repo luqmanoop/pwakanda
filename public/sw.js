@@ -6,9 +6,9 @@ const wakandaCaches = [movieStaticCache, movieDataCache, movieImageCache];
 
 const urlsToCache = [
   '/',
-  '/css/bootstrap.slim.js',
-  '/css/app.css',
   '/js/app.bundle.js',
+  '/css/app.css',
+  '/css/bootstrap.slim.min.css',
   '/fonts/glyphicons-halflings-regular.woff2',
   'https://fonts.googleapis.com/css?family=Roboto+Mono'
 ];
