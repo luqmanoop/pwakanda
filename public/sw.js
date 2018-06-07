@@ -42,9 +42,25 @@ self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
   const clonedRequest = event.request.clone();
 
+  if (
+    requestUrl.origin === location.origin &&
+    requestUrl.pathname.startsWith('/movies')
+  ) {
+    event.respondWith(
+      caches
+        .match('/')
+        .then(
+          response =>
+            response || fetchAndUpdate(movieStaticCache, clonedRequest)
+        )
+    );
+  }
+
   if (requestUrl.hostname === 'image.tmdb.org') {
     event.respondWith(fetchAndUpdate(movieImageCache, clonedRequest));
-  } else if (
+  }
+
+  if (
     requestUrl.origin === location.origin &&
     requestUrl.href.match(/\/api\//)
   ) {
@@ -60,23 +76,6 @@ self.addEventListener('fetch', event => {
       return;
     }
     event.respondWith(fetchAndUpdate(movieDataCache, clonedRequest));
-  } else {
-    if (requestUrl.pathname.startsWith('/movies')) {
-      event.respondWith(
-        caches
-          .match('/')
-          .then(
-            response =>
-              response || fetchAndUpdate(movieStaticCache, clonedRequest)
-          )
-      );
-      return;
-    }
-    event.respondWith(
-      caches.match(clonedRequest).then(response => {
-        return response || fetchAndUpdate(movieStaticCache, clonedRequest);
-      })
-    );
   }
 });
 
