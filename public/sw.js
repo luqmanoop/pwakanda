@@ -6,10 +6,11 @@ const wakandaCaches = [movieStaticCache, movieDataCache, movieImageCache];
 
 const urlsToCache = [
   '/',
+  '/css/bootstrap.slim.js',
+  '/css/app.css',
   '/js/app.bundle.js',
-  'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
-  'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
-  'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
+  '/fonts/glyphicons-halflings-regular.woff2',
+  'https://fonts.googleapis.com/css?family=Roboto+Mono'
 ];
 self.addEventListener('install', event => {
   console.log('[ServiceWorker] Install');
