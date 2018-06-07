@@ -14,11 +14,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto Mono', monospace, sans-serif;
 }
 .hero {
   height: 50%;
-  background-color: #ccc;
+  background-color: #222b31;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -30,8 +30,8 @@ h6 {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #333;
-  opacity: 0.45;
+  background: #222b31;
+  opacity: 0.4;
 }
 section {
   position: relative;

@@ -2,44 +2,32 @@ body {
   background-color: #222b31;
   font-family: 'Roboto Mono', monospace, sans-serif;
 }
-
 nav.navbar {
   border-radius: 0;
 }
-
-.nav.navbar-nav.navbar-right li,
-.heading {
+.heading,
+.nav.navbar-nav.navbar-right li {
   text-transform: capitalize;
 }
-
 .movies {
   margin-top: 20px;
+  padding-top: 56px;
 }
-
 .movies article.movie {
   background-color: #2c343b;
   color: #333;
   min-height: 150px;
   position: relative;
-  padding-left: 115px;
   margin-bottom: 25px;
-  padding-right: 15px;
-  padding-bottom: 10px;
-  padding-top: 15px;
   cursor: default;
+  padding: 15px 15px 10px 115px;
 }
-
 .movies .heading {
   margin: 0 15px 10px;
   font-size: 20px;
   color: #333;
   padding-bottom: 30px;
 }
-.vote-count,
-.release_date {
-  color: #9e9e9e;
-}
-
 .movies .movie .poster_container {
   position: absolute;
   cursor: pointer;
@@ -49,17 +37,14 @@ nav.navbar {
   top: 0;
   left: 0;
 }
-
 .movies .movie img.poster {
   width: 100%;
 }
-
 .glyphicon {
   top: 2px;
 }
-
-.vote-count,
-.release_date {
+.release_date,
+.vote-count {
   color: #9e9e9e;
 }
 .release_date {
@@ -68,29 +53,25 @@ nav.navbar {
 .vote-count .glyphicon {
   color: #e91e63;
 }
-
 .rating {
   color: #ffcb74;
 }
-
 .movies .movie .title.truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #fffaf0;
 }
-
 .movie .title {
   margin-top: 0;
   margin-bottom: 6px;
 }
-
 .movie .title > a {
-  color: #fffaf0;
+  color: inherit;
 }
-
 .movies .movie .overview-excerpt {
   max-height: 66px;
-  color: #fffacd;
+  color: #e3e2dd;
   line-clamp: 2;
   -webkit-line-clamp: 2;
   overflow: hidden;
@@ -100,7 +81,6 @@ nav.navbar {
   -webkit-box-orient: vertical;
   margin-top: 5px;
 }
-
 @media screen and (max-width: 600px) {
   .navbar {
     margin-bottom: 0;
@@ -108,7 +88,9 @@ nav.navbar {
   h3 {
     font-size: 14px;
   }
-
+  .movies {
+    margin-top: 0;
+  }
   .movies article.movie {
     margin-bottom: 2px;
   }
@@ -116,7 +98,6 @@ nav.navbar {
     visibility: hidden;
   }
 }
-
 .loader {
   left: 50%;
   top: 50%;
@@ -135,7 +116,6 @@ nav.navbar {
   animation: line 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite,
     rotate 1.6s linear infinite;
 }
-
 @-webkit-keyframes rotate {
   from {
     -webkit-transform: rotate(0);
@@ -146,7 +126,6 @@ nav.navbar {
     transform: rotate(450deg);
   }
 }
-
 @keyframes rotate {
   from {
     -webkit-transform: rotate(0);
@@ -157,7 +136,6 @@ nav.navbar {
     transform: rotate(450deg);
   }
 }
-
 @-webkit-keyframes line {
   0% {
     stroke-dasharray: 2, 85.964;
@@ -175,7 +153,6 @@ nav.navbar {
     transform: rotate(90deg);
   }
 }
-
 @keyframes line {
   0% {
     stroke-dasharray: 2, 85.964;
