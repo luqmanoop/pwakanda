@@ -36,6 +36,9 @@
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
+    "css-loader": "^0.28.11",
+    "mini-css-extract-plugin": "^0.4.0",
+    "style-loader": "^0.21.0",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.0"
   }
