@@ -1,6 +1,6 @@
 import { formatDate, renderMovieRatings } from '../../src/utils';
 import '../css/style.css';
-const tmdb = require('./tmdb');
+import Movie from './tmdb';
 require('./bootstrap-navbar-toggle');
 
 const addMovie = movie => {
@@ -43,38 +43,73 @@ const addMovie = movie => {
 const html = document.querySelector('.row.movies');
 const _loader = document.querySelector('.loader');
 
-(dom => {
-  const urlPath = window.location.pathname;
-  const paths = urlPath.split('/');
-  const cat = paths[paths.length - 1] || '';
+const urlPath = window.location.pathname;
+const paths = urlPath.split('/');
+const cat = paths[paths.length - 1] || '';
 
-  const url = `/api/movies/${cat}`;
-  let requestPending = true;
+const url = `/api/movies/${cat}`;
+const movie = new Movie(url);
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(reg => {
-      console.log('[ServiceWorker] registered');
-      if (!navigator.serviceWorker.controller) {
-        navigator.serviceWorker.addEventListener(
-          'controllerchange',
-          function changeListener() {
-            // New worker has claimed, warm up the caches
-            tmdb.fetchMovies(url);
-            // We only care about this once.
-            navigator.serviceWorker.removeEventListener(
-              'controllerchange',
-              changeListener
-            );
-          }
-        );
-      }
-    });
-  }
+let requestPending = true;
 
-  tmdb.fetchMovies(url).then(movies => {
-    requestPending = false;
-    _loader.classList.add('hide');
+const showSpinner = () => {
+  _loader.classList.remove('hide');
+};
 
-    dom.innerHTML = movies.map(movie => addMovie(movie)).join('');
+const hideSpinner = () => {
+  _loader.classList.add('hide');
+};
+
+const updatePage = movies => {
+  hideSpinner();
+  html.innerHTML = movies.map(movie => addMovie(movie)).join('');
+};
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(reg => {
+    console.log('[ServiceWorker] registered');
+    if (!navigator.serviceWorker.controller) {
+      navigator.serviceWorker.addEventListener(
+        'controllerchange',
+        function changeListener() {
+          // New worker has claimed, warm up the caches
+          console.log('warming up');
+          movie.fromNetwork({ 'x-cache-warmup': '1' });
+          // We only care about this once.
+          navigator.serviceWorker.removeEventListener(
+            'controllerchange',
+            changeListener
+          );
+        }
+      );
+    }
   });
-})(html);
+}
+
+// fetch latest movies on script load
+const latestMovies = movie.fromNetwork().then(movies => {
+  if (!movies) return false;
+
+  requestPending = false;
+
+  updatePage(movies);
+
+  return true;
+});
+
+const cachedMovies = movie.fromCache().then(movies => {
+  if (!movies) return false;
+
+  if (requestPending) {
+    updatePage(movies);
+  }
+  return true;
+});
+
+latestMovies
+  .then(fetched => {
+    return fetched || cachedMovies;
+  })
+  .then(result => {
+    hideSpinner();
+  });
