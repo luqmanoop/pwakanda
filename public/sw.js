@@ -42,7 +42,6 @@ self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
   const clonedRequest = event.request.clone();
 
-  console.log(requestUrl);
   if (
     requestUrl.origin === location.origin &&
     requestUrl.href.match(/\/api\//)
