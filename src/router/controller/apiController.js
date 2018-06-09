@@ -26,7 +26,9 @@ exports.fetchMovies = (req, res) => {
       })
     )
     .then(movies => res.json(movies))
-    .catch(err => res.json({ error: true, message: err }));
+    .catch(err =>
+      res.json({ error: true, message: err.message || 'Failed to fetch.' })
+    );
 };
 
 exports.fetchMovie = (req, res) => {
@@ -69,5 +71,7 @@ exports.fetchMovie = (req, res) => {
       };
     })
     .then(movie => res.json(movie))
-    .catch(err => res.send({ error: true, message: err.message }));
+    .catch(err =>
+      res.send({ error: true, message: err.message || 'Failed to fetch.' })
+    );
 };
