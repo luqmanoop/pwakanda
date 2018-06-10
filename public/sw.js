@@ -40,38 +40,27 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
-  const clonedRequest = event.request.clone();
 
-  if (
-    requestUrl.origin === location.origin &&
-    requestUrl.href.match(/\/api\//)
-  ) {
-    if (requestUrl.href.match(/\/api\/movies\/popular/)) {
+  if (requestUrl.href.match(/\/api\//)) {
+    if (requestUrl.pathname === '/api/movies/popular') {
       event.respondWith(
         caches
-          .match('/api/movies/')
-          .then(
-            response =>
-              response || fetchAndUpdate(movieDataCache, clonedRequest)
-          )
+          .match(requestUrl.href.replace('popular', ''))
+          .then(cacheResponse => {
+            return cacheResponse || tmdbApi(event.request);
+          })
       );
-    } else {
-      event.respondWith(fetchAndUpdate(movieDataCache, clonedRequest));
-    }
+    } else event.respondWith(tmdbApi(event.request));
   } else if (requestUrl.hostname === 'image.tmdb.org') {
-    event.respondWith(fetchAndUpdate(movieImageCache, clonedRequest));
+    event.respondWith(tmdbMoviePosters(event.request));
   } else {
-    if (
-      requestUrl.origin === location.origin &&
-      requestUrl.pathname.startsWith('/movies')
-    ) {
+    if (requestUrl.pathname.startsWith('/movies')) {
+      event.respondWith(caches.match('/'));
+    } else {
       event.respondWith(
-        caches
-          .match('/')
-          .then(
-            response =>
-              response || fetchAndUpdate(movieStaticCache, clonedRequest)
-          )
+        caches.match(event.request).then(cacheResponse => {
+          return cacheResponse || fetch(event.request);
+        })
       );
     }
   }
