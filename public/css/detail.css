@@ -82,6 +82,9 @@ article:not(:last-child) {
   margin-right: 15px;
   margin-bottom: 15px;
 }
+img.movie_poster {
+  width: 100px;
+}
 .overview {
   display: table-cell;
 }
