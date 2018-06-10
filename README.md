@@ -1,8 +1,61 @@
-# pwakanda
+# PWAkandan Movies
 
 🔥 A progressive [movie] web app from Wakanda! 🚀
 
-# License
+# Live Demo
+
+https://pwakanda.herokuapp.com
+
+## Instructions
+
+- Visit https://pwakanda.herokuapp.com
+- Turn off your network connection via wifi or Chrome DevTools [Device Mode](https://developer.chrome.com/devtools/docs/device-mode#network-conditions)
+- Reload the page! WHAAAT! STILL WORKS!
+- Star the repo 😉
+
+### Prerequisites
+
+- [Node](http://nodejs.org/)
+- [TMDb API KEY](https://www.themoviedb.org/)
+
+Clone the repo
+
+```sh
+# clone with SSH
+git clone git@github.com:codeshifu/pwakanda.git
+```
+
+or
+
+```sh
+# clone with HTTPS
+git clone https://github.com/codeshifu/pwakanda.git
+```
+
+### Running
+
+```sh
+cd pwakanda
+```
+
+create a file in `src/config/`
+
+```js
+// dev.js
+module.exports = {
+  apiKey: 'YOUR_TMDB_API_KEY_HERE'
+};
+```
+
+```sh
+npm start
+```
+
+#### Server
+
+`http://localhost:2222`
+
+## License
 
 Copyright (c) 2018 Olushi Luqman O.
 
