@@ -50,8 +50,8 @@ const cat = paths[paths.length - 1] || '';
 const url = `/api/movies/${cat}`;
 const movie = new Movie(url);
 
-let requestPending,
-  shouldFadeIn = true;
+let requestPending = true;
+let shouldFadeIn = true;
 
 const showSpinner = () => {
   _loader.classList.remove('hide');
