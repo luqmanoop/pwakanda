@@ -75,67 +75,86 @@ const _cast = document.querySelector('.casts');
     .split('/')[3]
     .trim();
 
-  fetch(`/api/movie/${id}`)
+  const url = `/api/movie/${id}`;
+  function updatePage(movie) {
+    const {
+      release_date,
+      original_title,
+      title,
+      poster,
+      backdrop,
+      overview,
+      genres,
+      cast,
+      reviews,
+      trailers
+    } = movie;
+
+    const date = formatDate(release_date);
+
+    _release_date.textContent = 'Released: ' + date;
+
+    _movieTitle.textContent = original_title || title;
+
+    const genreHtml = genres
+      .map((value, index) => {
+        if (index + 1 === genres.length) return createGenre(value.name);
+        const glyphicon =
+          "<span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span> ";
+        return createGenre(`${value.name} ${glyphicon}`);
+      })
+      .join('')
+      .trim();
+    _genres.innerHTML = 'Genres: ' + genreHtml;
+
+    _hero.setAttribute('style', `background-image: url(${backdrop})`);
+
+    _moviePoster.setAttribute('src', poster);
+    _sypnosis.textContent = overview;
+
+    _reviews.innerHTML = reviews.length
+      ? reviews
+          .map(value => createReview(value))
+          .join('')
+          .trim()
+      : emptyData('reviews');
+
+    _trailers.innerHTML = trailers.length
+      ? trailers
+          .map(value => createTrailer(value))
+          .join('')
+          .trim()
+      : emptyData('trailer');
+
+    const castNode = document.createElement('div');
+
+    castNode.innerHTML = cast.length
+      ? cast
+          .map(cast => createCast(cast))
+          .join('')
+          .trim()
+      : emptyData('cast');
+
+    _cast.appendChild(castNode);
+  }
+
+  let requestPending = true;
+
+  if ('caches' in window) {
+    caches
+      .match(url)
+      .then(cacheResponse => cacheResponse.json())
+      .then(movie => {
+        if (movie && requestPending) {
+          updatePage(movie);
+        }
+      });
+  }
+
+  fetch(url)
     .then(response => response.json())
     .then(movie => {
-      const {
-        release_date,
-        original_title,
-        title,
-        poster,
-        backdrop,
-        overview,
-        genres,
-        cast,
-        reviews,
-        trailers
-      } = movie;
-
-      const date = formatDate(release_date);
-
-      _release_date.textContent = 'Released: ' + date;
-
-      _movieTitle.textContent = original_title || title;
-
-      const genreHtml = genres
-        .map((value, index) => {
-          if (index + 1 === genres.length) return createGenre(value.name);
-          const glyphicon =
-            "<span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span> ";
-          return createGenre(`${value.name} ${glyphicon}`);
-        })
-        .join('')
-        .trim();
-      _genres.innerHTML = 'Genres: ' + genreHtml;
-
-      _hero.setAttribute('style', `background-image: url(${backdrop})`);
-
-      _moviePoster.setAttribute('src', poster);
-      _sypnosis.textContent = overview;
-
-      _reviews.innerHTML = reviews.length
-        ? reviews
-            .map(value => createReview(value))
-            .join('')
-            .trim()
-        : emptyData('reviews');
-
-      _trailers.innerHTML = trailers.length
-        ? trailers
-            .map(value => createTrailer(value))
-            .join('')
-            .trim()
-        : emptyData('trailer');
-
-      const castNode = document.createElement('div');
-
-      castNode.innerHTML = cast.length
-        ? cast
-            .map(cast => createCast(cast))
-            .join('')
-            .trim()
-        : emptyData('cast');
-
-      _cast.appendChild(castNode);
+      requestPending = false;
+      updatePage(movie);
     });
 })();
