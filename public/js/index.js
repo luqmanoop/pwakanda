@@ -99,7 +99,6 @@ const latestMovies = movie.fromNetwork().then(movies => {
 const fadeInPosters = () => {
   shouldFadeIn
     ? document.querySelectorAll('img.poster').forEach(posterElement => {
-        console.log(posterElement);
         posterElement.classList.add('fade-in');
       })
     : !!shouldFadeIn;
