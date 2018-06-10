@@ -40,6 +40,14 @@ nav.navbar {
 .movies .movie img.poster {
   width: 100%;
 }
+
+img.poster.fade-in {
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+  -ms-animation: fadein 2s; /* Internet Explorer */
+  -o-animation: fadein 2s; /* Opera < 12.1 */
+  animation: fadein 2s;
+}
 .glyphicon {
   top: 2px;
 }
@@ -90,9 +98,15 @@ nav.navbar {
   }
   .movies {
     margin-top: 0;
+    padding-top: 50px;
   }
   .movies article.movie {
     margin-bottom: 2px;
+  }
+  .movies [class='col-sm-*'],
+  .movies [class='col-sm-*'] {
+    margin-left: -15px;
+    margin-right: -15px;
   }
   .vote-count {
     visibility: hidden;
