@@ -139,6 +139,39 @@ function fetchAndUpdate(cacheName, request) {
     });
   });
 }
+
+function tmdbApi(request) {
+  if (request.headers.get('x-use-cache-only')) {
+    // respond with cache data if headers is asking for cached content
+    return caches.match(request);
+  } else if (request.headers.get('x-cache-warmup')) {
+    const headers = new Headers(request.headers);
+    headers.delete('x-cache-warmup');
+    console.log('[serviceWorker] warming up the cache...');
+    return tmdbApi(new Request(request, { headers: headers }))
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        const moviePostersRequests = data
+          .map(movie => movie.poster)
+          .map(posterUrl => new Request(posterUrl, { mode: 'no-cors' }));
+
+        return Promise.all(moviePostersRequests.map(tmdbMoviePosters));
+      })
+      .then(() => {
+        return caches.match(request);
+      });
+  } else {
+    return fetch(request).then(networkResponse => {
+      return caches.open(movieDataCache).then(movieCache => {
+        movieCache.put(request, networkResponse.clone());
+        return networkResponse;
+      });
+    });
+  }
+}
+
 function tmdbMoviePosters(request) {
   return caches.match(request).then(cacheResponse => {
     if (cacheResponse) {
