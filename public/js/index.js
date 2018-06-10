@@ -50,7 +50,8 @@ const cat = paths[paths.length - 1] || '';
 const url = `/api/movies/${cat}`;
 const movie = new Movie(url);
 
-let requestPending = true;
+let requestPending,
+  shouldFadeIn = true;
 
 const showSpinner = () => {
   _loader.classList.remove('hide');
@@ -90,17 +91,26 @@ const latestMovies = movie.fromNetwork().then(movies => {
   if (!movies) return false;
 
   requestPending = false;
-
   updatePage(movies);
-
+  fadeInPosters();
   return true;
 });
+
+const fadeInPosters = () => {
+  shouldFadeIn
+    ? document.querySelectorAll('img.poster').forEach(posterElement => {
+        console.log(posterElement);
+        posterElement.classList.add('fade-in');
+      })
+    : !!shouldFadeIn;
+};
 
 const cachedMovies = movie.fromCache().then(movies => {
   if (!movies) return false;
 
   if (requestPending) {
     updatePage(movies);
+    fadeInPosters();
   }
   return true;
 });
