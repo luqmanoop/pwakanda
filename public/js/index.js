@@ -62,7 +62,7 @@ const hideSpinner = () => {
 
 const updatePage = movies => {
   hideSpinner();
-  html.innerHTML = movies.map(movie => addMovie(movie)).join('');
+  html.innerHTML = movies ? movies.map(movie => addMovie(movie)).join('') : '';
 };
 
 if ('serviceWorker' in navigator) {
@@ -73,7 +73,6 @@ if ('serviceWorker' in navigator) {
         'controllerchange',
         function changeListener() {
           // New worker has claimed, warm up the caches
-          console.log('warming up');
           movie.fromNetwork({ 'x-cache-warmup': '1' });
           // We only care about this once.
           navigator.serviceWorker.removeEventListener(
