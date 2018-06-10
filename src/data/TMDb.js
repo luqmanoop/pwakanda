@@ -19,11 +19,11 @@ const image = {
 };
 
 const configPoster = function(size = 'xxlow') {
-  let poster_size = process.env.NODE_ENV === 'production' ? 'low' : size;
+  let poster_size = process.env.NODE_ENV === 'production' ? 'xlow' : size;
   const base_url = image.config.base_url;
   const { high, medium, low, xlow, xxlow, original } = image.config.poster_size;
 
-  switch (size) {
+  switch (poster_size) {
     case 'high':
       poster_size = high;
       break;
@@ -52,7 +52,7 @@ const configBackdrop = function(size = 'low') {
   const base_url = image.config.base_url;
   const { high, medium, low, original } = image.config.backdrop_size;
 
-  switch (size) {
+  switch (backdrop_size) {
     case 'high':
       backdrop_size = high;
       break;
