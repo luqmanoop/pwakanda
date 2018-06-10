@@ -143,7 +143,7 @@ const _cast = document.querySelector('.casts');
   if ('caches' in window) {
     caches
       .match(url)
-      .then(cacheResponse => cacheResponse.json())
+      .then(cacheResponse => (cacheResponse ? cacheResponse.json() : null))
       .then(movie => {
         if (movie && requestPending) {
           updatePage(movie);
