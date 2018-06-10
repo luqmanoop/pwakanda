@@ -50,18 +50,45 @@ self.addEventListener('fetch', event => {
             return cacheResponse || tmdbApi(event.request);
           })
       );
+    } else if (
+      requestUrl.pathname &&
+      requestUrl.pathname.startsWith('/api/movie')
+    ) {
+      event.respondWith(tmdbApi(event.request));
     } else event.respondWith(tmdbApi(event.request));
   } else if (requestUrl.hostname === 'image.tmdb.org') {
     event.respondWith(tmdbMoviePosters(event.request));
   } else {
-    if (requestUrl.pathname.startsWith('/movies')) {
+    if (requestUrl.pathname && requestUrl.pathname.startsWith('/movies')) {
       event.respondWith(caches.match('/'));
     } else {
-      event.respondWith(
-        caches.match(event.request).then(cacheResponse => {
-          return cacheResponse || fetch(event.request);
-        })
-      );
+      if (requestUrl.pathname && requestUrl.pathname.startsWith('/movie')) {
+        event.respondWith(
+          caches.match(event.request).then(cacheResponse => {
+            if (cacheResponse) return cacheResponse;
+            return caches.open(movieStaticCache).then(cache => {
+              let url = '';
+              return cache
+                .keys()
+                .then(requests => {
+                  requests.forEach(request => {
+                    if (request.url.match(/\/movie\//)) url = request.url;
+                  });
+                  return url;
+                })
+                .then(matchedUrl => {
+                  if (matchedUrl) return caches.match(matchedUrl);
+                  return fetchAndUpdateStaticCache(event.request);
+                });
+            });
+          })
+        );
+      } else
+        event.respondWith(
+          caches.match(event.request).then(cacheResponse => {
+            return cacheResponse || fetchAndUpdateStaticCache(event.request);
+          })
+        );
     }
   }
 });
@@ -77,35 +104,11 @@ function precache() {
 }
 
 /**
- * Attempt to fetch request from cache
- * @param request
- */
-function serveFromCache(request) {
-  const cloneRequest = request.clone();
-  const res = caches.open(movieStaticCache).then(cache => {
-    return cache.match(request).then(response => {
-      return (
-        response ||
-        fetch(cloneRequest).then(networkResponse => {
-          caches.open(movieDataCache).then(cache => {
-            cache.put(request, networkResponse);
-
-            return networkResponse;
-          });
-        })
-      );
-    });
-  });
-
-  return res;
-}
-
-/**
  * Fetch from network and update cache
  * @param request
  */
-function fetchAndUpdate(cacheName, request) {
-  return caches.open(cacheName).then(function(cache) {
+function fetchAndUpdateStaticCache(request) {
+  return caches.open(movieStaticCache).then(function(cache) {
     return cache.match(request).then(cacheResponse => {
       if (cacheResponse) {
         console.log('[ServiceWorker] fetching from cache.');
