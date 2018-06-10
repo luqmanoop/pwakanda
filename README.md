@@ -53,7 +53,7 @@ npm start
 
 #### Server
 
-`http://localhost:2222`
+[http://localhost:2222](http://localhost:2222)
 
 ## License
 
