@@ -139,3 +139,22 @@ function fetchAndUpdate(cacheName, request) {
     });
   });
 }
+function tmdbMoviePosters(request) {
+  return caches.match(request).then(cacheResponse => {
+    if (cacheResponse) {
+      return cacheResponse;
+    }
+
+    return fetch(request)
+      .then(networkResponse => {
+        return caches.open(movieImageCache).then(cache => {
+          cache.put(request, networkResponse.clone());
+
+          return networkResponse;
+        });
+      })
+      .catch(() => {
+        console.log('[@tmdbMoviePosters] - Failed to fetch from network');
+      });
+  });
+}
