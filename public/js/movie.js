@@ -156,5 +156,6 @@ const _cast = document.querySelector('.casts');
     .then(movie => {
       requestPending = false;
       updatePage(movie);
-    });
+    })
+    .catch(() => null);
 })();

@@ -155,12 +155,14 @@ function tmdbApi(request) {
         return caches.match(request);
       });
   } else {
-    return fetch(request).then(networkResponse => {
-      return caches.open(movieDataCache).then(movieCache => {
-        movieCache.put(request, networkResponse.clone());
-        return networkResponse;
-      });
-    });
+    return fetch(request)
+      .then(networkResponse => {
+        return caches.open(movieDataCache).then(movieCache => {
+          movieCache.put(request, networkResponse.clone());
+          return networkResponse;
+        });
+      })
+      .catch(() => null);
   }
 }
 
