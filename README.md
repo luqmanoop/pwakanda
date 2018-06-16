@@ -6,6 +6,8 @@
 
 https://pwakanda.herokuapp.com
 
+![Pwakanda homepage](https://i.imgur.com/pJONJR8.png)
+
 ## Instructions
 
 - Visit https://pwakanda.herokuapp.com
