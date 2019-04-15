@@ -20,6 +20,8 @@ https://pwakanda.herokuapp.com
 - [Node](http://nodejs.org/)
 - [TMDb API KEY](https://www.themoviedb.org/)
 
+
+### Installation
 Clone the repo
 
 ```sh
@@ -34,7 +36,7 @@ or
 git clone https://github.com/codeshifu/pwakanda.git
 ```
 
-### Running
+### Setup
 
 ```sh
 cd pwakanda
@@ -49,13 +51,13 @@ module.exports = {
 };
 ```
 
+### Run
+
 ```sh
 npm start
 ```
 
-#### Server
-
-[http://localhost:2222](http://localhost:2222)
+Visit [http://localhost:2222](http://localhost:2222) to view app
 
 ## License
 
